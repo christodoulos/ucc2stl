@@ -10,11 +10,11 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "jest"
+    "test": "jest",
+    "test-build": "npm run build && node test-build.js",
+    "ci": "npm run test-build & npm t & wait"
   },
-  "files": [
-    "/dist"
-  ],
+  "files": ["dist"],
   "keywords": [
     "Finite Element Analysis",
     "Generative Design",
