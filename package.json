@@ -4,6 +4,10 @@
   "description": "Cuboid Complexes in TS",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/christodoulos/ucc2stl.git"
+  },
   "scripts": {
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,7 +15,7 @@
   "files": [
     "/dist"
   ],
-  "keywords": [],
+  "keywords": ["Finite Element Analysis", "Generative Design", "Optimization", "3D printing"],
   "author": "Christodoulos Fragkoudakis",
   "license": "ISC",
   "dependencies": {
