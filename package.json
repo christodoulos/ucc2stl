@@ -10,18 +10,31 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "files": [
     "/dist"
   ],
-  "keywords": ["Finite Element Analysis", "Generative Design", "Optimization", "3D printing"],
+  "keywords": [
+    "Finite Element Analysis",
+    "Generative Design",
+    "Optimization",
+    "3D printing"
+  ],
   "author": "Christodoulos Fragkoudakis",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/christodoulos/ucc2stl/issues"
+  },
+  "homepage": "https://github.com/christodoulos/ucc2stl#ucc2stl",
   "dependencies": {
     "vectorious": "^6.0.2"
   },
   "devDependencies": {
-    "@types/node": "^14.14.35"
+    "@types/jest": "^26.0.21",
+    "@types/node": "^14.14.35",
+    "jest": "^26.6.3",
+    "ts-jest": "^26.5.4",
+    "typescript": "^4.2.3"
   }
 }
