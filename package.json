@@ -14,7 +14,9 @@
     "test-build": "npm run build && node test-build.js",
     "ci": "npm run test-build & npm t & wait"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "keywords": [
     "Finite Element Analysis",
     "Generative Design",
@@ -28,6 +30,7 @@
   },
   "homepage": "https://github.com/christodoulos/ucc2stl#ucc2stl",
   "dependencies": {
+    "ucc2stl": "^1.0.0",
     "vectorious": "^6.0.2"
   },
   "devDependencies": {
