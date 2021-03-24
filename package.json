@@ -1,6 +1,6 @@
 {
   "name": "ucc2stl",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Cuboid Complexes in TS",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,7 +13,8 @@
     "build": "tsc",
     "test": "jest",
     "test-build": "npm run build && node test-build.js",
-    "ci": "npm run test-build & npm t & wait",
+    "ci": "(npm run test-build && npm run rollup) & npm t & wait",
+    "prepublishOnly": "npm run ci && npm run rollup",
     "rollup": "rollup -c"
   },
   "files": [
