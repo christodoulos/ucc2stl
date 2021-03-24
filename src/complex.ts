@@ -17,12 +17,12 @@ export class CuboidComplex {
     const x = cuboid.centroid.x;
     const y = cuboid.centroid.y;
     const z = cuboid.centroid.z;
-    const top_id = new Point([x, y + 1, z]).toString();
-    const bottom_id = new Point([x, y - 1, z]).toString();
-    const west_id = new Point([x - 1, y, z]).toString();
-    const east_id = new Point([x + 1, y, z]).toString();
-    const north_id = new Point([x, y, z - 1]).toString();
-    const south_id = new Point([x, y, z + 1]).toString();
+    const top_id = new Point(x, y + 1, z).toString();
+    const bottom_id = new Point(x, y - 1, z).toString();
+    const west_id = new Point(x - 1, y, z).toString();
+    const east_id = new Point(x + 1, y, z).toString();
+    const north_id = new Point(x, y, z - 1).toString();
+    const south_id = new Point(x, y, z + 1).toString();
     if (this.cuboids.has(top_id)) {
       this.cuboids.get(top_id)!.faces.get("bottom")!.outer = false;
       this.cuboids.get(cuboid_id)!.faces.get("top")!.outer = false;

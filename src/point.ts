@@ -1,11 +1,11 @@
-import { NDArray } from "vectorious";
+import { Coordinates } from "./coords";
 import { Vector } from "./vector";
 
 export class Point {
-  coordinates: NDArray;
+  coordinates: Coordinates;
 
-  constructor(coordinates: Array<number>) {
-    this.coordinates = new NDArray(coordinates);
+  constructor(x: number, y: number, z: number) {
+    this.coordinates = new Coordinates(x, y, z);
   }
 
   get x(): number {
@@ -60,15 +60,23 @@ export class Point {
     return !this.isLessThanOrEqual(other);
   }
 
+  // subtract(other: Point): Vector {
+  //   const otherPoint = new Point([other.x, other.y, other.z]);
+  //   return new Vector(
+  //     otherPoint.coordinates.subtract(this.coordinates).toArray()
+  //   );
+  // }
+
   subtract(other: Point): Vector {
-    const otherPoint = new Point([other.x, other.y, other.z]);
-    return new Vector(
-      otherPoint.coordinates.subtract(this.coordinates).toArray()
-    );
+    return new Vector(other.x - this.x, other.y - this.y, other.z - this.z);
   }
 
+  // add(vector: Vector): Point {
+  //   const thisPoint = new Point([this.x, this.y, this.z]);
+  //   return new Point(thisPoint.coordinates.add(vector.coordinates).toArray());
+  // }
+
   add(vector: Vector): Point {
-    const thisPoint = new Point([this.x, this.y, this.z]);
-    return new Point(thisPoint.coordinates.add(vector.coordinates).toArray());
+    return new Point(this.x + vector.x, this.y + vector.y, this.z + vector.z);
   }
 }

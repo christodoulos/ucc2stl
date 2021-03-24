@@ -44,7 +44,9 @@ export function dense_cuboids(
   zip.forEach((element) => {
     if (element[0][0] - threshhold > EPSILON) {
       const vertices: Point[] = [];
-      element[1].forEach((p) => vertices.push(new Point(nodes[p])));
+      element[1].forEach((p) =>
+        vertices.push(new Point(nodes[p][0], nodes[p][1], nodes[p][2]))
+      );
       alist.push(new Cuboid(vertices));
     }
   });

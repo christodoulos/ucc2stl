@@ -1,10 +1,10 @@
-import { NDArray } from "vectorious";
+import { Coordinates } from "./coords";
 
 export class Vector {
-  coordinates: NDArray;
+  coordinates: Coordinates;
 
-  constructor(coordinates: Array<number>) {
-    this.coordinates = new NDArray(coordinates);
+  constructor(x: number, y: number, z: number) {
+    this.coordinates = new Coordinates(x, y, z);
   }
 
   get x(): number {
@@ -31,11 +31,19 @@ export class Vector {
     );
   }
 
+  // cross(other: Vector): Vector {
+  //   const thisVector = new Vector([this.x, this.y, this.z]);
+  //   const otherVector = new Vector([other.x, other.y, other.z]);
+  //   return new Vector(
+  //     thisVector.coordinates.cross(otherVector.coordinates).toArray()
+  //   );
+  // }
+
   cross(other: Vector): Vector {
-    const thisVector = new Vector([this.x, this.y, this.z]);
-    const otherVector = new Vector([other.x, other.y, other.z]);
     return new Vector(
-      thisVector.coordinates.cross(otherVector.coordinates).toArray()
+      this.y * other.z - this.z * other.y,
+      this.z * other.x - this.x * other.z,
+      this.x * other.y - this.y * other.x
     );
   }
 }

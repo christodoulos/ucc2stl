@@ -26,7 +26,7 @@ export class Cuboid {
       y += vertex.y;
       z += vertex.z;
     });
-    return new Point([x / 8, y / 8, z / 8]);
+    return new Point(x / 8, y / 8, z / 8);
   }
   equals(other: Cuboid): boolean {
     return this.centroid.equals(other.centroid);
