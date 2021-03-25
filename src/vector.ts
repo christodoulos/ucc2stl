@@ -31,14 +31,6 @@ export class Vector {
     );
   }
 
-  // cross(other: Vector): Vector {
-  //   const thisVector = new Vector([this.x, this.y, this.z]);
-  //   const otherVector = new Vector([other.x, other.y, other.z]);
-  //   return new Vector(
-  //     thisVector.coordinates.cross(otherVector.coordinates).toArray()
-  //   );
-  // }
-
   cross(other: Vector): Vector {
     return new Vector(
       this.y * other.z - this.z * other.y,

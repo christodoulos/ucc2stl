@@ -10,7 +10,30 @@
 </head>
 
 <body>
+    <label>Connectivity file: </label><input type="file" id="file-selector">
+    <script>
+        const fileSelector = document.getElementById('file-selector');
+        fileSelector.addEventListener('change', (event) => {
+            const fileList = event.target.files;
+            console.log(fileList[0].name)
+            console.log(fileList[1].name)
+            console.log(fileList[2].name)
 
+            const Fnode = fileList[2];
+            const Fconnectivity = fileList[0];
+            const Fdensity = fileList[1];
+            const Rnode = new FileReader();
+            Rnode.readAsText(Fnode);
+            const Rconnectivity = new FileReader();
+            Rconnectivity.readAsText(Fconnectivity);
+            const Rdensity = new FileReader();
+            Rdensity.readAsText(Fdensity);
+
+            Rnode.result.split(/\r?\n/).forEach(element => {
+                console.log(element)
+            });
+        });
+    </script>
 </body>
 
 </html>
