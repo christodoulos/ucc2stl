@@ -1,6 +1,6 @@
 {
   "name": "ucc2stl",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Cuboid Complexes in TS",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -34,7 +34,6 @@
     "url": "https://github.com/christodoulos/ucc2stl/issues"
   },
   "homepage": "https://github.com/christodoulos/ucc2stl#ucc2stl",
-  "dependencies": { },
   "devDependencies": {
     "@types/jest": "^26.0.21",
     "@types/node": "^14.14.35",
