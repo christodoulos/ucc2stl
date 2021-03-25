@@ -6,35 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ucc2stl test</title>
-    <script src="https://unpkg.com/ucc2stl@1.2.4/dist/ucc2stl.min.js"></script>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script>
-        AFRAME.registerComponent('school-playground', {
-            init: function () {
-                // Solution for Creating Entities.
-                var sceneEl = document.querySelector('a-scene');
-
-                // for (var i = 0; i < 50; i++) {
-                //     var boxEl = document.createElement('a-box');
-                //     boxEl.setAttribute('material', { color: '#EF2D5E' });
-                //     boxEl.setAttribute('position', { x: Math.random() * 20 - 10, y: Math.random() * 20 - 10, z: Math.random() * 20 - 10 });
-                //     boxEl.setAttribute('scale', { x: Math.random() / 2, y: Math.random() / 2, z: Math.random() / 2 });
-                //     sceneEl.appendChild(boxEl);
-                // }
-            }
-        });
-    </script>
+    <script src="https://unpkg.com/ucc2stl@1.2.5/dist/ucc2stl.min.js"></script>
+    <script src="stlview/stl_viewer.min.js"></script>
 </head>
 
 <body>
-    <a-scene school-playground>
-        <!-- <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-        <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
-        <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder> -->
-        <!-- <a-triangle></a-triangle> -->
-        <!-- <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane> -->
-        <!-- <a-sky color="#ECECEC"></a-sky> -->
-    </a-scene>
+    <div id="stl_cont" style="width:1000px;height:800px;"></div>
     <script>
 
         Promise.all([
@@ -51,44 +28,25 @@
             console.log(`Done. There are ${complex.cuboids.size} "dense" cuboids.`);
             console.log("Starting outer shell caclulations ...");
             complex.shell();
-            var sceneEl = document.querySelector('a-scene');
-
-            complex.triangles.forEach(element => {
-                // console.log(element);
-                var triEL = document.createElement('a-triangle');
-                triEL.setAttribute('material', { color: '#EF2D5E' });
-                // triEL.setAttribute('position', { x: element.x, y: element.y, z: element.z });
-                triEL.setAttribute('vertex-a', Object.values(element[0].coordinates).join(' '));
-                triEL.setAttribute('vertex-b', Object.values(element[1].coordinates).join(' '));
-                triEL.setAttribute('vertex-c', Object.values(element[2].coordinates).join(' '));
-                triEL.setAttribute('scale', { x: 0.1, y: 0.1, z: 0.1 })
-                sceneEl.appendChild(triEL);
-            });
-
-            element = complex.triangles[123];
-            console.log(Object.values(element[0].coordinates).join(' '))
-            console.log(Object.values(element[1].coordinates).join(' '))
-            console.log(Object.values(element[2].coordinates).join(' '))
-            var triEL = document.createElement('a-triangle');
-            triEL.setAttribute('material', { color: '#EF2D5E' });
-            // triEL.setAttribute('position', { x: element.x, y: element.y, z: element.z });
-            triEL.setAttribute('vertex-a', Object.values(element[0].coordinates).join(' '));
-            triEL.setAttribute('vertex-b', Object.values(element[1].coordinates).join(' '));
-            triEL.setAttribute('vertex-c', Object.values(element[2].coordinates).join(' '));
-            triEL.setAttribute('scale', { x: 0.1, y: 0.1, z: 0.1 })
-            sceneEl.appendChild(triEL);
-
-            // for (var i = 0; i < 50; i++) {
-            //     var boxEl = document.createElement('a-box');
-            //     boxEl.setAttribute('material', { color: '#EF2D5E' });
-            //     boxEl.setAttribute('position', { x: Math.random() * 20 - 10, y: Math.random() * 20 - 10, z: Math.random() * 20 - 10 });
-            //     boxEl.setAttribute('scale', { x: Math.random() / 2, y: Math.random() / 2, z: Math.random() / 2 });
-            //     sceneEl.appendChild(boxEl);
-            // }
-
             console.log(
                 `Done. There are ${complex.vertices.size} vertices and ${complex.triangles.length} triangles.`
             );
+            var textFile = null;
+            makeTextFile = function (text) {
+                var data = new Blob([text], { type: 'text/plain' });
+
+                // If we are replacing a previously generated file we need to
+                // manually revoke the object URL to avoid memory leaks.
+                if (textFile !== null) {
+                    window.URL.revokeObjectURL(textFile);
+                }
+
+                textFile = window.URL.createObjectURL(data);
+
+                return textFile;
+            };
+            const tralala = makeTextFile(complex.stl);
+            var stl_viewer = new StlViewer(document.getElementById("stl_cont"), { models: [{ id: 0, filename: tralala }] });
         })
     </script>
 </body>
