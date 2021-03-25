@@ -55,6 +55,29 @@ export function txt2list(
   return alist;
 }
 
+export function dense_w_cuboids(
+  _node: string,
+  _connectivity: string,
+  _density: string,
+  threshhold: number
+): Cuboid[] {
+  const alist: Cuboid[] = [];
+  const node = txt2list(_node, "int", true);
+  const connectivity = txt2list(_connectivity, "float");
+  const density = txt2list(_density, "float");
+  const zip = density.map((cdensity, index) => [cdensity, connectivity[index]]);
+  zip.forEach((element) => {
+    if (element[0][0] - threshhold > EPSILON) {
+      const vertices: Point[] = [];
+      element[1].forEach((p) =>
+        vertices.push(new Point(node[p][0], node[p][1], node[p][2]))
+      );
+      alist.push(new Cuboid(vertices));
+    }
+  });
+  return alist;
+}
+
 export function dense_cuboids(
   nodes_file: string,
   connectivity_file: string,

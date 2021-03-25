@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ucc2stl test</title>
-    <script src="https://unpkg.com/ucc2stl@1.2.2/dist/ucc2stl.min.js"></script>
+    <script src="https://unpkg.com/ucc2stl@1.2.3/dist/ucc2stl.min.js"></script>
 </head>
 
 <body>
@@ -19,12 +19,14 @@
             fetch('http://localhost:8000/density.txt')
                 .then(response => response.text())
         ]).then((values) => {
-            const node = values[0];
-            const connectivity = values[1];
-            const density = values[2];
-            console.log(ucc2stl.txt2list(node));
-            console.log(ucc2stl.txt2list(connectivity));
-            console.log(ucc2stl.txt2list(density));
+            const cuboids = ucc2stl.dense_w_cuboids(values[0], values[1], values[2], 0.3);
+            const complex = new ucc2stl.CuboidComplex(cuboids);
+            console.log(`Done. There are ${complex.cuboids.size} "dense" cuboids.`);
+            console.log("Starting outer shell caclulations ...");
+            complex.shell();
+            console.log(
+                `Done. There are ${complex.vertices.size} vertices and ${complex.triangles.length} triangles.`
+            );
         })
     </script>
 </body>
