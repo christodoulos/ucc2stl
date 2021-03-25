@@ -30,6 +30,31 @@ function csv2list(
   return alist;
 }
 
+function txt2list(
+  txt: string,
+  atype: string,
+  prepend_dummy = false
+): number[][] {
+  const alist: number[][] = [];
+  const lines = txt.split(/\r?\n/);
+  if (prepend_dummy) alist.push([0, 0, 0]);
+  lines.forEach((line: string) => {
+    const p: number[] = [];
+    line
+      .trim()
+      .split(",")
+      .forEach((e) => {
+        if (atype === "int") {
+          p.push(parseInt(e));
+        } else {
+          p.push(parseFloat(e));
+        }
+      });
+    alist.push(p);
+  });
+  return alist;
+}
+
 export function dense_cuboids(
   nodes_file: string,
   connectivity_file: string,
