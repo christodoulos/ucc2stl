@@ -30,7 +30,7 @@ function csv2list(
   return alist;
 }
 
-function txt2list(
+export function txt2list(
   txt: string,
   atype: string,
   prepend_dummy = false
