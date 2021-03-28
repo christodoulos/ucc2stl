@@ -11,5 +11,5 @@ npm i ucc2stl
 ## Installation - Browser
 
 ```html
-<script src="https://unpkg.com/ucc2stl@1.2.7/dist/ucc2stl.min.js"></script>
+<script src="https://unpkg.com/ucc2stl@1.2.8/dist/ucc2stl.min.js"></script>
 ```
