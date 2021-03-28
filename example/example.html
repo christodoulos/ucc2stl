@@ -8,6 +8,7 @@
     <title>ucc2stl test</title>
     <script src="https://unpkg.com/ucc2stl@1.2.5/dist/ucc2stl.min.js"></script>
     <script src="stlview/stl_viewer.min.js"></script>
+    <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
 </head>
 
 <body>
@@ -46,7 +47,20 @@
                 return textFile;
             };
             const tralala = makeTextFile(complex.stl);
-            var stl_viewer = new StlViewer(document.getElementById("stl_cont"), { models: [{ id: 0, filename: tralala }] });
+            var stl_viewer = new StlViewer(document.getElementById("stl_cont"),
+                { models: [{ id: 0, filename: tralala, display: "wireframe" }], });
+            // stl_viewer.set_display(0, "smooth")
+            // var r = new X.renderer3D();
+            // r.init();
+            // var bridge = new X.mesh();
+            // console.log(1)
+            // bridge.file = tralala;
+            // console.log(2)
+            // bridge.magicmode = true;
+            // console.log(3)
+            // r.add(bridge);
+            // console.log(4)
+            // r.render();
         })
     </script>
 </body>
