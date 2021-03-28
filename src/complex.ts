@@ -72,11 +72,11 @@ endfacet`;
           this.stl += this.stl_facet(normal, triangle1);
           this.triangles.push(triangle1);
           const triangle2 = [v[2], v[3], v[0]];
-          // this.stl += this.stl_facet(normal, triangle2);
-          // this.triangles.push(triangle2);
-          // v.forEach((vertex) => {
-          //   this.vertices.set(vertex.toString(), true);
-          // });
+          this.stl += this.stl_facet(normal, triangle2);
+          this.triangles.push(triangle2);
+          v.forEach((vertex) => {
+            this.vertices.set(vertex.toString(), true);
+          });
         }
       });
     });
