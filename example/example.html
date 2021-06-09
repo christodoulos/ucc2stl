@@ -6,15 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ucc2stl test</title>
-    <script src="https://unpkg.com/ucc2stl@1.2.7/dist/ucc2stl.min.js"></script>
+    <script src="https://unpkg.com/ucc2stl@1.2.8/dist/ucc2stl.min.js"></script>
     <script src="stlview/stl_viewer.min.js"></script>
-    <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
 </head>
 
 <body>
     <div id="stl_cont" style="width:1000px;height:800px;"></div>
     <script>
-
         Promise.all([
             fetch('http://localhost:8000/node.txt')
                 .then(response => response.text()),
@@ -35,32 +33,15 @@
             var textFile = null;
             makeTextFile = function (text) {
                 var data = new Blob([text], { type: 'text/plain' });
-
-                // If we are replacing a previously generated file we need to
-                // manually revoke the object URL to avoid memory leaks.
                 if (textFile !== null) {
                     window.URL.revokeObjectURL(textFile);
                 }
-
                 textFile = window.URL.createObjectURL(data);
-
                 return textFile;
             };
             const tralala = makeTextFile(complex.stl);
             var stl_viewer = new StlViewer(document.getElementById("stl_cont"),
-                { models: [{ id: 0, filename: tralala, display: "flat" }], });
-            // stl_viewer.set_display(0, "smooth")
-            // var r = new X.renderer3D();
-            // r.init();
-            // var bridge = new X.mesh();
-            // console.log(1)
-            // bridge.file = tralala;
-            // console.log(2)
-            // bridge.magicmode = true;
-            // console.log(3)
-            // r.add(bridge);
-            // console.log(4)
-            // r.render();
+                { models: [{ id: 0, filename: tralala, display: "wireframe" }], });
         })
     </script>
 </body>
